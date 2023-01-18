@@ -12,7 +12,7 @@ function setup (){
 	b = 350;
 	v = new Velocity(0 , 0);
 	pad = new Paddle (p,v,h,b,fill_a);
-	ball = new Ball(new Point(150 , 150), new Velocity(3,4), 70 , "blue");
+	ball = new gemeinerBall(new Ball(new Point(150 , 150), new Velocity(3,4), 70 , "blue"));
 }
 	
 		
@@ -46,10 +46,10 @@ function game (){
 	ball.collideswithCanvas(screen_b , screen_h);
 	ball.iterate();
 
-	if(ball.point.x+ball.radius >=screen_h){
+	if(ball.getpoint().x+ball.getradius() >=screen_h){
 		state = false
 	}
-	if(ball.point.x-ball.radius <=0){
+	if(ball.getpoint().x-ball.getradius() <=0){
 		console.log("Punkt"+score)
 		score++
 	}

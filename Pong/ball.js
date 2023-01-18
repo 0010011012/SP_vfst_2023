@@ -29,6 +29,13 @@ collideswithCanvas(hoehe , breite){
 		this.velocity.x=-this.velocity.x;	
 	}
 }
+getpoint(){
+return this.point;
 }
-
-
+getvelocity(){
+	return this.velocity;
+	}
+getradius(){
+	return this.radius;
+}
+}

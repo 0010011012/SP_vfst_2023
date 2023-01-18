@@ -31,11 +31,11 @@ class Paddle{
 		}
 	}
 	collideswithBall(ball){
-		if(ball.point.y>this.point.y
-			&& ball.point.y<this.point.y+this.breite
-			&& ball.point.x+ball.radius>= this.point.x
+		if(ball.getpoint().y>this.point.y
+			&& ball.getpoint().y<this.point.y+this.breite
+			&& ball.getpoint().x+ball.getradius()>= this.point.x
 			){
-			ball.velocity.x=-ball.velocity.x
+			ball.getvelocity().x=-ball.getvelocity().x
 		}
 
 	}
