@@ -2,7 +2,7 @@ fill_a="red"
 screen_h=700
 screen_b=1000
 score=0
-state=true
+score2=0
 
 function setup (){
 	//createCanvas(1000,700);
@@ -11,7 +11,9 @@ function setup (){
 	h = 50;
 	b = 350;
 	v = new Velocity(0 , 0);
+	w = new Velocity(0 , 0)
 	pad = new Paddle (p,v,h,b,fill_a);
+	pod = new Paddle (new Point(50,300),w,h,b,fill_a);
 	ball = new gemeinerBall(new Ball(new Point(150 , 150), new Velocity(3,4), 70 , "blue"));
 }
 	
@@ -19,14 +21,7 @@ function setup (){
   
 
 function draw (){
-	if(state === true){
 		game()
-	}
-	else{
-		textSize(100);
-		text('Verloren', screen_h/2-100, screen_b/2-100);
-
-	}
 }
 
 
@@ -40,34 +35,27 @@ function game (){
 	pad.draw();
 	pad.collideswithCanvas(screen_b , screen_h);
 	pad.iterate();
-	pad.collideswithBall(ball);
+	pad.collideswithBalln(ball);
+
+	pod.draw();
+	pod.collideswithCanvas(screen_b , screen_h);
+	pod.iterate();
+	pod.collideswithBalls(ball);
 
 	ball.draw();
 	ball.collideswithCanvas(screen_b , screen_h);
 	ball.iterate();
 
 	if(ball.getpoint().x+ball.getradius() >=screen_h){
-		state = false
+		score2++
 	}
 	if(ball.getpoint().x-ball.getradius() <=0){
-		console.log("Punkt"+score)
 		score++
 	}
 	textSize(25);
-	text('Score: '+score,25 , 25)
-	
-	if(this.point.y<0){
-		fill_a="violet";
-	}
-	if(this.point.y+250>700){
-		fill_a="red";
-	}
-	if(this.point.x+350>1000){
-		fill_a="blue";
-	}
-	if(this.point.x<0){
-		fill_a="green";	
-	}
+	text('Score Player1: '+score,25 , 25)
+	textSize(25)
+	text('Score Player2: '+score2,675 , 25)
 }
 function keyPressed(){
 	if(keyCode === LEFT_ARROW){
@@ -76,7 +64,10 @@ function keyPressed(){
 	if(keyCode === RIGHT_ARROW){
 		pad.velocity.y=10;
 	}
-	if(keyCode === DOWN_ARROW){
-		pad.velocity.y=0
+	if(keyCode === 65){
+		pod.velocity.y=-10
+	}
+	if(keyCode === 68){
+		pod.velocity.y=10;
 	}
 }

@@ -30,13 +30,20 @@ class Paddle{
 			this.velocity.x=-this.velocity.x;	
 		}
 	}
-	collideswithBall(ball){
+	collideswithBalln(ball){
 		if(ball.getpoint().y>this.point.y
 			&& ball.getpoint().y<this.point.y+this.breite
 			&& ball.getpoint().x+ball.getradius()>= this.point.x
 			){
 			ball.getvelocity().x=-ball.getvelocity().x
 		}
-
+	}
+	collideswithBalls(ball){
+		if(ball.getpoint().y>this.point.y
+			&& ball.getpoint().y<this.point.y+this.breite
+			&& ball.getpoint().x-ball.getradius()<= this.point.x+this.hoehe
+			){
+			ball.getvelocity().x=-ball.getvelocity().x
+		}
 	}
 }
